@@ -1,12 +1,19 @@
-name: learn-github-actions
+name: Shell commands
+
 on: [push]
+
 jobs:
-  check-bats-version:
+  run-shell-command:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '14'
-      - run: npm install -g bats
-      - run: bats -v
+      - name: echo a string
+        run: echo "Hello world"
+      - name: multiline script
+        run: |
+          node -v
+          npm -v
+      - name: python command
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python
